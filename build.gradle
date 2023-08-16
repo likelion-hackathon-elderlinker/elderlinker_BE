@@ -1,0 +1,62 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.2'
+	id 'io.spring.dependency-management' version '1.1.2'
+	id 'org.graalvm.buildtools.native' version '0.9.23'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.h2database:h2'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	runtimeOnly 'com.h2database:h2'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.5.2'
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.4.2'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+}
+/*
+dependencyManagement {
+	imports {
+		mavenBom 'org.springframework.modulith:spring-modulith-bom:1.0.0-RC1'
+	}
+}
+*/
+/*
+이 코드는 Gradle 빌드 스크립트에서 사용되는 것으로 보이며, dependencyManagement 블록 내에서 mavenBom을 통해 Spring Modulith 프레임워크의 BOM (Bill of Materials)을 가져오는 역할을 합니다.
+
+BOM은 종속성 관리를 편리하게 하기 위해 사용되는 메커니즘입니다. 주로 하나의 의존성 그룹에 속하는 여러 모듈의 버전을 일관되게 유지하기 위해 사용됩니다.
+
+spring-modulith-bom이라는 BOM은 Spring Modulith 프로젝트의 여러 모듈에 대한 버전 정보와 의존성을 제공합니다. BOM을 사용하면 개발자는 모듈의 버전을 직접 지정하지 않아도 되며, BOM에서 제공하는 버전을 기반으로 의존성을 관리할 수 있습니다.
+
+간단히 말해, 이 코드는 Spring Modulith 프레임워크의 BOM을 빌드에 가져오고, 이 BOM을 사용하여 프로젝트의 의존성 버전을 관리하려는 것으로 보입니다.
+* */
+tasks.named('test') {
+	useJUnitPlatform()
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<body>
+<div>
+    <div class="container my-3">
+        <div class="my-3 border-bottom">
+            <div>
+                <h4>회원가입</h4>
+            </div>
+        </div>
+        <!-- 회원가입 폼 시작 -->
+        <form th:action="@{/user/signup}" method="post" th:object="${userCreateForm}">
+
+            <!-- 사용자 아이디 입력란 -->
+            <div class="mb-3">
+                <label for="userid" class="form-label">사용자ID</label>
+                <input type="text" th:field="*{userid}" class="form-control" id="userid" name="userid">
+                <span th:if="${#fields.hasErrors('userid')}" th:errors="*{userid}" class="text-danger"></span>
+            </div>
+            <!-- 비밀번호 입력란 -->
+            <div class="mb-3">
+                <label for="password" class="form-label">비밀번호</label>
+                <input type="password" th:field="*{password}" class="form-control" id="password" name="password">
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
+            </div>
+            <!-- 이름 입력란 -->
+            <div class="mb-3">
+                <label for="username" class="form-label">이름</label>
+                <input type="text" th:field="*{username}" class="form-control" id="username" name="username">
+                <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></span>
+            </div>
+            <!-- 전화번호 입력란 -->
+            <div class="mb-3">
+                <label for="phonenumber" class="form-label">전화번호</label>
+                <input type="text" th:field="*{phonenumber}" class="form-control" id="phonenumber" name="phonenumber">
+                <span th:if="${#fields.hasErrors('phonenumber')}" th:errors="*{phonenumber}" class="text-danger"></span>
+            </div>
+            <!-- 회원가입 버튼 -->
+            <button type="submit" class="btn btn-primary">회원가입</button>
+        </form>
+        <!-- 회원가입 폼 끝 -->
+    </div>
+</div>
+</body>
+</html>

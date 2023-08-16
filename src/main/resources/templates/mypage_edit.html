@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+</head>
+<body>
+<h2>프로필 편집</h2>
+<form action="/user/edit" method="post" enctype="multipart/form-data">
+    <!-- 기존 입력 필드들 -->
+    <div class="form-group">
+        <label for="profileImage">프로필 이미지 업로드</label>
+        <input type="file" class="form-control-file" id="profileImage" name="profileImage">
+    </div>
+    <button type="submit" class="btn btn-primary">저장</button>
+</form>
+<form th:action="@{/user/edit}" th:object="${editProfileForm}" method="post">
+    <div>
+        <label for="newPhoneNumber">새로운 전화번호:</label>
+        <input type="text" id="newPhoneNumber" name="newPhoneNumber" th:field="*{newPhoneNumber}">
+        <span th:if="${#fields.hasErrors('newPhoneNumber')}" th:errors="*{newPhoneNumber}"></span>
+    </div>
+    <div>
+        <label for="newPassword">새로운 비밀번호:</label>
+        <input type="password" id="newPassword" name="newPassword" th:field="*{newPassword}">
+        <span th:if="${#fields.hasErrors('newPassword')}" th:errors="*{newPassword}"></span>
+    </div>
+    <div>
+        <label for="confirmNewPassword">새로운 비밀번호 확인:</label>
+        <input type="password" id="confirmNewPassword" name="confirmNewPassword" th:field="*{confirmNewPassword}">
+        <span th:if="${#fields.hasErrors('confirmNewPassword')}" th:errors="*{confirmNewPassword}"></span>
+    </div>
+    <div>
+        <button type="submit">프로필 변경</button>
+    </div>
+</form>
+</body>
+</html>
